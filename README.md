@@ -22,13 +22,13 @@ Here are a few things you need to know before you begin the Red Hat Quay on Open
 ## Deploy Red Hat Quay ecosystem
 
 ```bash
-# Create OpenShift 4.4.6 cluster on AWS
+# Create OpenShift 4.4.6 cluster on AWS:
 ./01-create-aws-cluster.sh
 
-# After logging in to the above OpenShift cluster (`oc login`), run bash scripts sequentially:
+# Install Quay operator:
 ./02-install-operator.sh
 
-# Read https://access.redhat.com/solutions/3533201
+# First read https://access.redhat.com/solutions/3533201
 #   $ podman login -u="redhat+quay" -p="<REDACTED>" quay.io
 #   $ cat /run/user/${UID}/containers/auth.json
 # Put the secret on line # 8 in 'resources/quay-auth.yaml'
@@ -47,4 +47,4 @@ Lucian Maly <<lucian@redhat.com>>
 
 ---
 
-_Last update: Mon Jun 15 23:32:29 UTC 2020_
+_Last update: Tue Jun 16 01:57:19 UTC 2020_

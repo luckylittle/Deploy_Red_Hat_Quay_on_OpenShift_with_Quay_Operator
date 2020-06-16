@@ -1,5 +1,11 @@
 #!/bin/bash
 
+API=$(cat auth/kubeconfig | grep server | cut -d : -f 2,3 | tr -d ' ')
+KUBEPASS=$(cat auth/kubeadmin-password)
+
+# Login to the new AWS cluster
+oc login ${API} -u kubeadmin -p ${KUBEPASS} --insecure-skip-tls-verify=true
+
 # Create a new project quay-enterprise
 oc new-project quay-enterprise
 
