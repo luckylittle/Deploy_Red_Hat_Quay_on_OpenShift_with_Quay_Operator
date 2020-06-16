@@ -1,0 +1,11 @@
+auth/kubeadmin-password
+auth/kubeconfig
+tls/journal-gatewayd.crt
+tls/journal-gatewayd.key
+.openshift_install_state.json
+.openshift_install.log
+metadata.json
+terraform.aws.auto.tfvars.json
+terraform.tfstate
+terraform.tfvars.json
+pull-secret.txt

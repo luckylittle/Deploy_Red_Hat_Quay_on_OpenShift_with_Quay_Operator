@@ -1,0 +1,22 @@
+---
+apiVersion: redhatcop.redhat.io/v1alpha1
+kind: QuayEcosystem
+metadata:
+  name: quay-enterprise-ecosystem
+spec:
+  quay:
+    imagePullSecretName: quay-pull-secret
+    deploymentStrategy: Recreate
+    skipSetup: false
+    keepConfigDeployment: true
+    externalAccess:
+      hostname: quay.app.sandbox1023.opentlc.com
+    registryBackends:
+      - name: local
+        local:
+          storagePath: /opt/quayregistry
+    database:
+      volumeSize: 10Gi
+  clair:
+    enabled: true
+    imagePullSecretName: quay-pull-secret

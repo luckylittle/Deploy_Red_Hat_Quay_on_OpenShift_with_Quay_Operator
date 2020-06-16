@@ -1,0 +1,9 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: quay-pull-secret
+data:
+  .dockercfg: >-
+    <REDACTED>
+type: kubernetes.io/dockercfg

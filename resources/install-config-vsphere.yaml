@@ -1,0 +1,40 @@
+---
+# This installation config is for vSphere in a restricted network
+apiVersion: v1
+baseDomain: example.com
+proxy:
+  httpProxy: http://<username>:<password>@<ip>:<port>
+  httpsProxy: http://<username>:<password>@<ip>:<port>
+  noProxy: example.com
+compute:
+- hyperthreading: Enabled
+  name: worker
+  # the following line creates masters-only cluster:
+  replicas: 0
+controlPlane:
+  hyperthreading: Enabled
+  name: master
+  replicas: 3
+metadata:
+  name: test
+platform:
+  vsphere:
+    vcenter: <vcenter_host_name>
+    username: <username>
+    password: <password>
+    datacenter: <datacenter_name>
+    defaultDatastore: datastore
+fips: false
+pullSecret: '{"auths":{"<bastion_host_name>:5000": {"auth": "<REDACTED>","email": "<REDACTED>"}}}'
+sshKey: 'ssh-ed25519 AAAA...'
+additionalTrustBundle: |
+  -----BEGIN CERTIFICATE-----
+  <REDACTED>
+  -----END CERTIFICATE-----
+imageContentSources:
+- mirrors:
+  - <bastion_host_name>:5000/<repo_name>/release
+  source: quay.io/openshift-release-dev/ocp-release
+- mirrors:
+  - <bastion_host_name>:5000/<repo_name>/release
+  source: registry.svc.ci.openshift.org/ocp/release

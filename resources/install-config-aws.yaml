@@ -1,0 +1,56 @@
+---
+# This installation is for AWS
+apiVersion: v1
+baseDomain: sandbox1023.opentlc.com
+# master-0 to master-2:
+controlPlane:
+  hyperthreading: Enabled
+  name: master
+  platform:
+    aws:
+      zones:
+      - ap-southeast-2a
+      - ap-southeast-2b
+      - ap-southeast-2c
+      rootVolume:
+        iops: 4000
+        size: 500
+        type: io1
+      type: m5.xlarge
+  replicas: 3
+# worker-ap-southeast-2a to worker-ap-southeast-2c:
+compute:
+- hyperthreading: Enabled
+  name: worker
+  platform:
+    aws:
+      rootVolume:
+        iops: 2000
+        size: 500
+        type: io1
+      type: c5.4xlarge
+      zones:
+      - ap-southeast-2a
+      - ap-southeast-2b
+      - ap-southeast-2c
+  # the following line creates masters-only cluster:
+  replicas: 0
+metadata:
+  name: cluster-122e
+networking:
+  clusterNetwork:
+  - cidr: 10.128.0.0/14
+    hostPrefix: 23
+  machineNetwork:
+  - cidr: 10.0.0.0/16
+  networkType: OpenShiftSDN
+  serviceNetwork:
+  - 172.30.0.0/16
+platform:
+  aws:
+    region: ap-southeast-2
+    userTags:
+      owner: lmaly
+      company: redhat
+pullSecret: '{"auths":{"cloud.openshift.com":{"auth":"<REDACTED>","email":"<REDACTED>"},"quay.io":{"auth":"<REDACTED>","email":"<REDACTED>"}}}'
+fips: false
