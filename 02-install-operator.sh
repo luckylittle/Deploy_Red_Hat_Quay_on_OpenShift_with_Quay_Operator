@@ -1,6 +1,6 @@
 #!/bin/bash
 
-API=$(cat auth/kubeconfig | grep server | cut -d : -f 2,3 | tr -d ' ')
+API=$(cat auth/kubeconfig | grep server | cut -d : -f 2,3,4 | tr -d ' ')
 KUBEPASS=$(cat auth/kubeadmin-password)
 
 # Login to the new AWS cluster

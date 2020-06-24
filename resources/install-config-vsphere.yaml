@@ -31,10 +31,11 @@ additionalTrustBundle: |
   -----BEGIN CERTIFICATE-----
   <REDACTED>
   -----END CERTIFICATE-----
+# the source images will be coming from local Docker registry:
 imageContentSources:
 - mirrors:
-  - <bastion_host_name>:5000/<repo_name>/release
+  - 127.0.0.1:5000/<repo_name>/release
   source: quay.io/openshift-release-dev/ocp-release
 - mirrors:
-  - <bastion_host_name>:5000/<repo_name>/release
+  - 127.0.0.1:5000/<repo_name>/release
   source: registry.svc.ci.openshift.org/ocp/release

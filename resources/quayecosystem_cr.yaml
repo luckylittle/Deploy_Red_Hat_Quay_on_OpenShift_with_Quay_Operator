@@ -3,6 +3,7 @@ apiVersion: redhatcop.redhat.io/v1alpha1
 kind: QuayEcosystem
 metadata:
   name: quay-enterprise-ecosystem
+  namespace: quay-enterprise
 spec:
   quay:
     imagePullSecretName: quay-pull-secret
